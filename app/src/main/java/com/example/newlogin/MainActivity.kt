@@ -1,14 +1,18 @@
 package com.example.newlogin
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.newlogin.Model.ModelUser
 import com.example.newlogin.singletons.MyDatabase
 import com.example.newlogin.singletons.MyFirebaseAuth
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -35,6 +39,11 @@ class MainActivity : AppCompatActivity(){
             var gaji =  edtRegisterGaji.text.trim().toString().toInt()
             createAccount(email,password,pekerjaan,gaji,myFireBaseAuth,myFirebaseDatabase)
         }
+        tvLogin.setOnClickListener {
+            val intent: Intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            MainActivity@this.onStop()
+        }
 
 
     }
@@ -44,13 +53,19 @@ class MainActivity : AppCompatActivity(){
             if (it.isSuccessful){
                 val user = firebaseAuth.currentUser
                 val userID = user!!.uid
-                var userMap = HashMap<String,ModelUser>()
+                val userMap = HashMap<String,ModelUser>()
                 userMap.put(userID,ModelUser(email,password,pekerjaan,gaji))
                 firebaseDatabase.
                     getReference("Users")
                     .setValue(userMap).addOnCompleteListener {
                         if (it.isSuccessful){
-
+                            user.sendEmailVerification().addOnCompleteListener {
+                                if (it.isSuccessful){
+                                    Toast.makeText(MainActivity@this,"Check Your Email",Toast.LENGTH_LONG).show()
+                                }else{
+                                    Toast.makeText(MainActivity@this,"Something Went Wrong",Toast.LENGTH_LONG).show()
+                                }
+                            }
                         }else{
                             Log.i("Result",it.exception.toString())
                         }
