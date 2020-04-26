@@ -2,9 +2,10 @@ package com.example.newlogin.Model
 
 class ModelUser
     (
+    var namaLengkap:String,
     var email:String,
-     var password:String,
-     var pekerjaan:String,
-     var gaji:Int?){
-    constructor():this("","","",0)
+     var alamat:String,
+     var noHp:String,
+    var password:String){
+    constructor():this("","","","","")
 }

@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/selectHome"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Home"/>
+    <item
+        android:id="@+id/selectFav"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Riwayat" />
+    <item
+        android:id="@+id/selectSearch"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Jadwal"/>
+    <item
+        android:id="@+id/selectCart"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Vendor"/>
 
 </menu>

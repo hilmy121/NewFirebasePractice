@@ -1,14 +1,13 @@
 package com.example.newlogin
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.example.newlogin.Model.ModelUser
 import com.example.newlogin.singletons.MyDatabase
 import com.example.newlogin.singletons.MyFirebaseAuth
@@ -18,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity(){
 
-    lateinit var btnRegister:Button
+    lateinit var cvRegister:CardView
     lateinit var edtRegisterEmail:EditText
     lateinit var edtRegisterPassword:EditText
     lateinit var tvLogin:TextView
@@ -26,18 +25,20 @@ class MainActivity : AppCompatActivity(){
     lateinit var myFirebaseDatabase:FirebaseDatabase
     lateinit var edtRegisterPekerjaan:EditText
     lateinit var edtRegisterGaji:EditText
+    lateinit var edtRegisterNamaLengkap : EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         myFireBaseAuth = MyFirebaseAuth.getMyAuth()
         myFirebaseDatabase = MyDatabase.getDatabase()
         initProps()
-        btnRegister.setOnClickListener {
+        cvRegister.setOnClickListener {
             var email = edtRegisterEmail.text.trim().toString()
             var password = edtRegisterPassword.text.trim().toString()
-            var pekerjaan = edtRegisterPekerjaan.text.trim().toString()
-            var gaji =  edtRegisterGaji.text.trim().toString().toInt()
-            createAccount(email,password,pekerjaan,gaji,myFireBaseAuth,myFirebaseDatabase)
+            var noHp = edtRegisterPekerjaan.text.trim().toString()
+            var alamat =  edtRegisterGaji.text.trim().toString()
+            var namaLengkap = edtRegisterNamaLengkap .text.trim().toString()
+            createAccount(namaLengkap,email,noHp,alamat,password,myFireBaseAuth,myFirebaseDatabase)
         }
         tvLogin.setOnClickListener {
             val intent: Intent = Intent(this,LoginActivity::class.java)
@@ -48,13 +49,13 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-    fun createAccount(email:String,password:String,pekerjaan:String,gaji:Int,firebaseAuth: FirebaseAuth,firebaseDatabase: FirebaseDatabase){
+    fun createAccount(namaLengkap:String,email:String,noHp:String,alamat:String,password:String,firebaseAuth: FirebaseAuth,firebaseDatabase: FirebaseDatabase){
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
             if (it.isSuccessful){
                 val user = firebaseAuth.currentUser
                 val userID = user!!.uid
                 val userMap = HashMap<String,ModelUser>()
-                userMap.put(userID,ModelUser(email,password,pekerjaan,gaji))
+                userMap.put(userID,ModelUser(namaLengkap,email,alamat,noHp,password))
                 firebaseDatabase.
                     getReference("Users")
                     .setValue(userMap).addOnCompleteListener {
@@ -78,11 +79,12 @@ class MainActivity : AppCompatActivity(){
     }
 
     fun initProps(){
-        edtRegisterGaji=findViewById(R.id.edtRegisterGaji)
-        edtRegisterPekerjaan=findViewById(R.id.edtRegisterPekerjaan)
-        btnRegister = findViewById(R.id.btnRegister)
+        edtRegisterGaji=findViewById(R.id.edtRegisterPassword)
+        edtRegisterPekerjaan=findViewById(R.id.edtRegisterAlamat)
+        cvRegister = findViewById(R.id.cvRegister)
         edtRegisterEmail = findViewById(R.id.edtRegisterEmail)
-        edtRegisterPassword = findViewById(R.id.edtRegisterPassword)
+        edtRegisterPassword = findViewById(R.id.edtRegisterNoHp)
+        edtRegisterNamaLengkap = findViewById(R.id.edtRegisterNamaLengkap)
         tvLogin = findViewById(R.id.tvLogin)
     }
 }

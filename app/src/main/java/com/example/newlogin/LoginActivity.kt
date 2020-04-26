@@ -6,15 +6,16 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.example.newlogin.singletons.MyDatabase
 import com.example.newlogin.singletons.MyFirebaseAuth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
-
-    lateinit var btnLogin:Button
+    lateinit var tvRegister:TextView
+    lateinit var cvbtnLogin:CardView
     lateinit var edtEmailLogin:EditText
     lateinit var edtPasswordLogin:EditText
     lateinit var firebaseAuth: FirebaseAuth
@@ -25,19 +26,27 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth=MyFirebaseAuth.getMyAuth()
         firebaseDatabase=MyDatabase.getDatabase()
         initProps()
-        btnLogin.setOnClickListener {
+        tvRegister.setOnClickListener {
+            val intent:Intent = Intent(LoginActivity@this,MainActivity::class.java)
+            startActivity(intent)
+            LoginActivity@this.onStop()
+
+        }
+        cvbtnLogin.setOnClickListener {
             login(edtEmailLogin.text.trim().toString(),
                 edtPasswordLogin.text.trim().toString(),
                 firebaseAuth,
                 firebaseDatabase)
+
         }
     }
 
 
     fun initProps(){
-        btnLogin = findViewById(R.id.btnLogin)
+        cvbtnLogin = findViewById(R.id.cvbtnLogin)
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin)
         edtEmailLogin = findViewById(R.id.edtLoginEmail)
+        tvRegister = findViewById(R.id.tvRegister)
     }
 
     fun login(email:String,password:String,firebaseAuth: FirebaseAuth,firebaseDatabase: FirebaseDatabase){

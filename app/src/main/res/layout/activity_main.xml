@@ -6,73 +6,163 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <EditText
-        android:id="@+id/edtRegisterEmail"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="148dp"
-        android:inputType="textEmailAddress"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Sign Up"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-
-        android:id="@+id/edtRegisterPassword"
-        android:inputType="textPassword"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtRegisterEmail" />
-
-    <EditText
-        android:id="@+id/edtRegisterPekerjaan"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtRegisterPassword" />
-
-    <EditText
-        android:hint="Gaji"
-        android:inputType="number"
-        android:id="@+id/edtRegisterGaji"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtRegisterPekerjaan" />
-
-
-    <Button
-        android:id="@+id/btnRegister"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvedtRegisterNamaLengkap"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorEditText"
+        app:cardBackgroundColor="@color/colorEditText"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <EditText
+            android:id="@+id/edtRegisterNamaLengkap"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Nama Lengkap"
+            android:inputType="textEmailAddress" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvedtRegisterEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:cardBackgroundColor="@color/colorEditText"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvedtRegisterNamaLengkap">
+
+        <EditText
+            android:id="@+id/edtRegisterEmail"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvedtRegisterNoHp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:cardBackgroundColor="@color/colorEditText"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvedtRegisterEmail">
+
+        <EditText
+            android:id="@+id/edtRegisterNoHp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Nomor Handphone"
+            android:inputType="number" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvedtRegisterAlamat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:cardBackgroundColor="@color/colorEditText"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvedtRegisterNoHp">
+
+        <EditText
+            android:id="@+id/edtRegisterAlamat"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Alamat" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvedtRegisterPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:cardBackgroundColor="@color/colorEditText"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvedtRegisterAlamat">
+
+        <EditText
+            android:id="@+id/edtRegisterPassword"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="Gaji"
+            android:inputType="number" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRegister"
+        android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="22dp"
-        android:text="Register"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="@color/colorCardView"
+        app:cardCornerRadius="15dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtRegisterGaji" />
+        app:layout_constraintTop_toBottomOf="@+id/cvedtRegisterPassword">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Register"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Sudah Punya Akun?"
+        app:layout_constraintTop_toBottomOf="@id/cvRegister"
+        app:layout_constraintRight_toLeftOf="@+id/tvLogin"/>
 
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="20dp"
         android:text="Login"
+        android:textColor="@color/colorCardView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/cvRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
